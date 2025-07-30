@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Listado de Países</h2>
+
+  <div style="margin-bottom: 10px;">
+    <input [formControl]="filterControl" placeholder="Filtrar por país" />
+    <select [formControl]="continentControl">
+      <option value="">Todos los continentes</option>
+      <option *ngFor="let cont of continentes" [value]="cont">{{ cont }}</option>
+    </select>
+  </div>
+
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>País</th>
+        <th>Continente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of displayedCountries">
+        <td>{{ c.pais }}</td>
+        <td>{{ c.continente }}</td>
+      </tr>
+      <tr *ngIf="displayedCountries.length === 0">
+        <td colspan="2">No hay resultados</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 10px;">
+    <button (click)="changePage(-1)" [disabled]="currentPage === 1">Anterior</button>
+    Página {{ currentPage }} de {{ totalPages }}
+    <button (click)="changePage(1)" [disabled]="currentPage === totalPages">Siguiente</button>
+  </div>
+</div>
