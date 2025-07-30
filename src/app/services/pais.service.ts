@@ -11,13 +11,9 @@ interface Pais {
   providedIn: 'root'
 })
 export class PaisService {
-  //private url = 'https://websites.ladorianids.com/resources/prueba/list-countries.json';
+
   private url = 'https://raw.githubusercontent.com/stefanbinder/countries-states/master/countries.json';
   constructor(private http: HttpClient) {}
-
-  //  getCountries(): Observable<Pais[]> {
-  //    return this.http.get<Pais[]>(this.url);
-  //  }
 
   getCountries(): Observable<Pais[]> {
     return this.http.get<any[]>(this.url).pipe(
@@ -26,7 +22,6 @@ export class PaisService {
           pais: c.name || '',
           continente: c.region || ''
         }))
-        //.filter(c => c.pais && c.continente)
       )
     );
   }
